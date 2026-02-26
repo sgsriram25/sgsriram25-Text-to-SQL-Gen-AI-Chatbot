@@ -71,19 +71,14 @@ Before running this project, ensure you have:
 
 ## Setup Instructions
 
-### 1. Clone/Download the Repository
 
-```bash
-cd c:\Northeastern\Project\Text2SQL
-```
-
-### 2. Install Dependencies
+### 1. Install Dependencies
 
 ```bash
 pip install langchain langchain-google-genai langchain-community langgraph python-dotenv pymysql
 ```
 
-### 3. Configure Google API Key
+### 2. Configure Google API Key
 
 Create a `.env` file in the project root:
 
@@ -96,7 +91,7 @@ GOOGLE_API_KEY=your_google_api_key_here
 2. Click "Create API Key"
 3. Copy the key and paste it in the `.env` file
 
-### 4. Configure Database Connection
+### 3. Configure Database Connection
 
 In `text2sql.ipynb`, update the MySQL connection string:
 
@@ -109,7 +104,7 @@ Replace with your actual:
 - `your_password` - MySQL password
 - `your_database_name` - Target database name
 
-### 5. Verify Database Setup
+### 4. Verify Database Setup
 
 Ensure your MySQL database has tables with proper schemas. The system will automatically fetch schema information.
 
