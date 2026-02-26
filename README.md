@@ -2,7 +2,7 @@
 
 An intelligent, self-correcting Text-to-SQL system that converts natural language questions into executable SQL queries. Built with LangGraph and Google's Generative AI, this system can understand database schemas, generate SQL, execute queries, and automatically fix errors through iterative feedback.
 
-## 🎯 Problem Statement
+## Problem Statement
 
 The promise of Text-to-SQL systems is straightforward: ask your database a question in plain English and get an answer back. While creating a demo is easy, production databases present real challenges:
 
@@ -11,7 +11,7 @@ The promise of Text-to-SQL systems is straightforward: ask your database a quest
 - **LLM Limitations**: Large Language Models can generate syntactically incorrect SQL that fails at execution
 - **Traditional Approach Limitation**: Standard Text-to-SQL systems treat SQL generation as a one-off translation task—if it fails, the user gets a database error
 
-## 💡 Solution: Self-Correcting Agentic System
+## Solution: Self-Correcting Agentic System
 
 Rather than viewing Text-to-SQL as a simple translation problem, we approach it as a **navigation and feedback task**. The system:
 
@@ -23,7 +23,7 @@ Rather than viewing Text-to-SQL as a simple translation problem, we approach it 
 
 This transforms a fragile proof-of-concept into a **resilient, production-ready system**.
 
-## 🏗️ Architecture
+## Architecture
 
 ### System Components
 
@@ -51,7 +51,7 @@ User Question
 4. **Execution Node**: Runs the SQL on the MySQL database and captures errors
 5. **Router**: Decides whether to retry with error feedback or return final result
 
-## 📋 Prerequisites
+## Prerequisites
 
 Before running this project, ensure you have:
 
@@ -69,7 +69,7 @@ Before running this project, ensure you have:
 - `python-dotenv` - Environment variable management
 - `pymysql` - MySQL database driver
 
-## 🚀 Setup Instructions
+## Setup Instructions
 
 ### 1. Clone/Download the Repository
 
@@ -113,7 +113,7 @@ Replace with your actual:
 
 Ensure your MySQL database has tables with proper schemas. The system will automatically fetch schema information.
 
-## 📖 How to Use
+## How to Use
 
 ### Running the Notebook
 
@@ -144,7 +144,7 @@ print(f"Iterations: {final_state['iteration_count']}")
 - **ITERATIONS**: Number of attempts needed (1 = first try success, 2+ = error correction occurred)
 - **FINAL ERROR**: If present, indicates query still failed after max retries
 
-## 🔄 End-to-End Workflow Example
+## End-to-End Workflow Example
 
 ### Scenario: Asking "What was the total sale for Category 3 in East region?"
 
@@ -181,7 +181,7 @@ WHERE s.category_id = 3 AND r.name = 'East'
 - Success → Return result
 - Or continue retry (max 3 iterations)
 
-## 🛠️ Code Structure Breakdown
+## Code Structure Breakdown
 
 ### Cell 1: Imports
 Imports all necessary libraries for LLM integration, database connection, and workflow orchestration.
@@ -215,7 +215,6 @@ Builds the LangGraph workflow by connecting all nodes with conditional routing l
 ### Cells 9-10: Test Cases
 Executes sample queries to demonstrate the system's capabilities.
 
-## 🔧 Advanced Configuration
 
 ### Adjusting Max Iterations
 
@@ -243,7 +242,7 @@ For large databases, implement schema pruning to fetch only relevant tables:
 relevant_tables = vector_db.similarity_search(question, k=5)
 ```
 
-## ⚠️ Common Issues & Troubleshooting
+## Common Issues & Troubleshooting
 
 ### Issue: "Invalid API Key"
 **Solution**: Verify your Google API key in `.env` file and ensure it has Generative AI permissions enabled.
@@ -268,13 +267,13 @@ relevant_tables = vector_db.similarity_search(question, k=5)
 - Verify data exists for the queried conditions
 - Consider asking more specific questions
 
-## 📊 Performance Considerations
+## Performance Considerations
 
 - **Single Query Latency**: ~2-5 seconds for successful first attempts, 5-15 seconds for error corrections
 - **Database Impact**: Each iteration runs a new query, so retries increase database load
 - **LLM Calls**: Each iteration calls the LLM, incurring API costs
 
-## 🎓 Learning Outcomes
+## Learning Outcomes
 
 This project demonstrates:
 - Building agentic AI systems with LangGraph
@@ -283,7 +282,7 @@ This project demonstrates:
 - Database integration with Python
 - State management in complex workflows
 
-## 🚀 Future Enhancements
+## Future Enhancements
 
 1. **Schema Pruning**: Use vector embeddings to fetch only relevant tables
 2. **Multi-turn Context**: Remember previous queries in conversation
@@ -293,7 +292,7 @@ This project demonstrates:
 6. **SQL Validation**: Pre-validation of syntax before execution
 7. **Audit Logging**: Track all queries and corrections for compliance
 
-## 📝 License
+## License
 
 This project is registered under MIT license.
 
